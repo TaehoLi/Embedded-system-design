@@ -1,2 +1,3 @@
 # Embedded-system-design
-course
+
+_Professor: 임동진_
