@@ -11,10 +11,12 @@
 #define LINE_BUFF 16
 #define FPGA_TEXT_LCD_DEVICE "/dev/fpga_text_lcd"
 
+// LCD 두 줄에 들어갈 string1,2 선언
+// global variable 이기 때문에 -> thread1,2가 서로 공유할 수 있음
 char name[16];
 char name2[16];
 
-void* get_str()
+void* get_str() // 문자열을 두 번 입력받는 함수
 {
 	printf("Whats your string? : ");
 	fgets(name, sizeof(name), stdin);
@@ -24,7 +26,7 @@ void* get_str()
 	name2[strlen(name2) - 1] = 0;
 }
 //int argc, char **argv
-void* show_lcd()
+void* show_lcd() // 받은 문자열을 LCD에 보여주는 함수
 {
 	
 	int i;
@@ -33,7 +35,7 @@ void* show_lcd()
 	int chk_size;
 	char *ptr;
 
-	unsigned char string[32]; //크기가 32인 char형 배열을 선언
+	unsigned char string[32];
 	memset(string,0,sizeof(string));
 
 	
@@ -69,7 +71,7 @@ void* show_lcd()
 	printf("\n");
 }
 
-void main()
+void main() // thread1,2 차례로 무한 반복
 {
 	pthread_t t1,t2;
 	while(1)
@@ -80,4 +82,3 @@ void main()
 		pthread_join(t2,NULL);
 	};
 }
-
