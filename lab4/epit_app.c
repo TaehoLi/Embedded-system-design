@@ -78,7 +78,7 @@ void* display()
 
 	while (1)
 	{
-		usleep(10000);
+		usleep(1000);
 	}
 
 	close(fd);
@@ -95,7 +95,7 @@ void* button()
 	buff_size=sizeof(push_sw_buff);
 
 	while(1){
-		usleep(300000);
+		usleep(200000);
 		read(dev, &push_sw_buff, buff_size);
 
 		if(push_sw_buff[0] == 1){
@@ -158,8 +158,8 @@ void main()
 	pthread_t t1,t2;
 	
 	while(1){
-		pthread_create(&t2,NULL,display,NULL);
 		pthread_create(&t1,NULL,button,NULL);
+		pthread_create(&t2,NULL,display,NULL);
 		pthread_join(t1,NULL);
 		pthread_join(t2,NULL);
 	}
