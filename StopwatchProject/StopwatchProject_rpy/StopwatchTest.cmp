@@ -1,0 +1,340 @@
+I-Logix-RPY-Archive version 8.5.2 C++ 2030848
+{ IComponent 
+	- _id = GUID 91d8077d-623a-11e9-8988-0050fcbce674;
+	- _myState = 139264;
+	- _name = "StopwatchTest";
+	- _lastID = 1;
+	- m_buildType = Executable;
+	- m_libraries = "";
+	- m_additionalSources = "";
+	- m_standardHeaders = "";
+	- m_includePath = "";
+	- m_initializationCode = "";
+	- m_folder = { IFolder 
+		- _id = GUID 91d8077e-623a-11e9-8988-0050fcbce674;
+		- _myState = 8192;
+		- _name = "Files";
+		- _lastID = 2;
+		- m_path = "StopwatchTest";
+		- Elements = { IRPYRawContainer 
+			- size = 0;
+		}
+		- Files = { IRPYRawContainer 
+			- size = 2;
+			- value = 
+			{ IFile 
+				- _id = GUID a5d8d656-67ba-11e9-a700-0050fcbce674;
+				- _myState = 8192;
+				- _name = "SevenSegmentInterface";
+				- m_path = "";
+				- m_type = implFile;
+				- Fragments = { IRPYRawContainer 
+					- size = 1;
+					- value = 
+					{ IFileFragment 
+						- _id = GUID dfb883dd-67ba-11e9-9af4-0050fcbce674;
+						- _name = "Text";
+						- m_type = textFragment;
+						- m_text = "#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <string.h>
+
+#define MAX_DIGIT 4
+#define FND_DEVICE \"/dev/fpga_fnd\"
+
+int dev;
+unsigned char data[4];
+
+int initSevenSegment(void)
+{
+	dev = open(FND_DEVICE, O_RDWR);
+	if (dev<0) {
+		printf(\"Device open error : %s\\n\",FND_DEVICE);
+		exit(1);
+	}
+}
+
+void displaySevenSegment(int value)
+{
+	data[2]=value/10;
+	data[3]=value%10;
+	write(dev,&data,4);
+}";
+						- m_startRow = 0;
+						- m_startCol_Short = 0;
+						- m_endRow = 0;
+						- m_endCol_Short = 0;
+						- m_subject = { INObjectHandle 
+							- _m2Class = "";
+						}
+						- Fragments = { IRPYRawContainer 
+							- size = 0;
+						}
+					}
+				}
+			}
+			{ IFile 
+				- _id = GUID 651b292d-67c4-11e9-a6d4-0050fcbce674;
+				- _myState = 8192;
+				- _name = "ButtonInterface";
+				- m_path = "";
+				- m_type = implFile;
+				- Fragments = { IRPYRawContainer 
+					- size = 1;
+					- value = 
+					{ IFileFragment 
+						- _id = GUID 8495dcbf-67c6-11e9-8818-0050fcbce674;
+						- _name = "Text";
+						- m_type = textFragment;
+						- m_text = "#include <stdio.h> 
+#include <stdlib.h> 
+#include <unistd.h> 
+#include <sys/types.h> 
+#include <sys/stat.h> 
+#include <fcntl.h> 
+#include <sys/ioctl.h>
+#include <signal.h>
+
+#define MAX_BUTTON 9
+int dev_switch, dev_led;
+int buff_size;
+unsigned char push_sw_buff[MAX_BUTTON];
+
+int initButton(void)
+{
+	dev_switch = open(\"/dev/fpga_push_switch\", O_RDWR);
+	if (dev_switch<0){
+		printf(\"Device Open Error\\n\");
+		close(dev_switch);
+		return -1;
+	}  
+}
+int initLed(void)
+{ 
+	dev_led = open(\"/dev/fpga_led\", O_RDWR);
+	if (dev_switch<0){
+		printf(\"Device Open Error\\n\");
+		close(dev_led);
+		return -1;
+	}
+	buff_size=sizeof(push_sw_buff);  
+}
+unsigned char readPushSwitch(void)
+{
+    read(dev_switch, &push_sw_buff, buff_size);  
+    return push_sw_buff[6]| push_sw_buff[7] | push_sw_buff[8];
+}
+";
+						- m_startRow = 0;
+						- m_startCol_Short = 0;
+						- m_endRow = 0;
+						- m_endCol_Short = 0;
+						- m_subject = { INObjectHandle 
+							- _m2Class = "";
+						}
+						- Fragments = { IRPYRawContainer 
+							- size = 0;
+						}
+					}
+				}
+			}
+		}
+	}
+	- m_configActive = { ICodeGenConfigInfoHandle 
+		- _m2Class = "ICodeGenConfigInfo";
+		- _id = GUID 77ca6bb1-6245-11e9-9dc8-0050fcbce674;
+	}
+	- Configs = { IRPYRawContainer 
+		- size = 2;
+		- value = 
+		{ ICodeGenConfigInfo 
+			- _id = GUID 91d8077f-623a-11e9-8988-0050fcbce674;
+			- _myState = 8192;
+			- _name = "Linux";
+			- HyperLinks = { IRPYRawContainer 
+				- size = 2;
+				- value = 
+				{ IMHyperLink 
+					- _id = GUID 91d80ba8-623a-11e9-8988-0050fcbce674;
+					- _dependsOn = { INObjectHandle 
+						- _m2Class = "";
+					}
+					- _linkDispName = "Edit Makefile";
+					- _linkType = "FREE";
+					- _linkTarget = "/home/control/work/Rhapsody/StopwatchProject/DefaultComponent/DefaultConfig/DefaultComponent.mak";
+					- isConfigurationFileHyperLink = 1;
+				}
+				{ IMHyperLink 
+					- _id = GUID 91d80ba9-623a-11e9-8988-0050fcbce674;
+					- _dependsOn = { INObjectHandle 
+						- _m2Class = "";
+					}
+					- _linkDispName = "Edit Main File";
+					- _linkType = "FREE";
+					- _linkTarget = "/home/control/work/Rhapsody/StopwatchProject/DefaultComponent/DefaultConfig/MainDefaultComponent";
+					- isConfigurationFileHyperLink = 1;
+				}
+			}
+			- _scopeType = Explicit;
+			- _libraries = "";
+			- _additionalSources = "";
+			- _standardHeaders = "";
+			- _includePath = "";
+			- _targetMain = "";
+			- _instrumentation = None;
+			- _timeModel = RealTime;
+			- m_generateActors = 1;
+			- _statechartImplementation = Flat;
+			- _initializationCode = "";
+			- _checksList = 0 ;
+			- ScopeElements = { IRPYRawContainer 
+				- size = 0;
+			}
+			- InitialInstances = { IRPYRawContainer 
+				- size = 0;
+			}
+			- _root = { IFolder 
+				- _id = GUID 91d80780-623a-11e9-8988-0050fcbce674;
+				- _myState = 8192;
+				- _name = "Linux";
+				- m_path = "";
+				- Elements = { IRPYRawContainer 
+					- size = 0;
+				}
+				- Files = { IRPYRawContainer 
+					- size = 0;
+				}
+			}
+			- weakCGTime = 4.26.2019::0:14:38;
+			- strongCGTime = 4.26.2019::0:14:38;
+			- AnimScopeElements = { IRPYRawContainer 
+				- size = 0;
+			}
+			- m_allInAnimScope = 1;
+		}
+		{ ICodeGenConfigInfo 
+			- _id = GUID 77ca6bb1-6245-11e9-9dc8-0050fcbce674;
+			- _myState = 8192;
+			- _properties = { IPropertyContainer 
+				- Subjects = { IRPYRawContainer 
+					- size = 1;
+					- value = 
+					{ IPropertySubject 
+						- _Name = "CPP_CG";
+						- Metaclasses = { IRPYRawContainer 
+							- size = 1;
+							- value = 
+							{ IPropertyMetaclass 
+								- _Name = "Configuration";
+								- Properties = { IRPYRawContainer 
+									- size = 1;
+									- value = 
+									{ IProperty 
+										- _Name = "Environment";
+										- _Value = "MontaVista";
+										- _Type = Enum;
+										- _ExtraTypeInfo = "Linux,MontaVista,Multi4Linux,INTEGRITY5,Integrity5ESTL";
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			- _name = "MontaVista";
+			- HyperLinks = { IRPYRawContainer 
+				- size = 2;
+				- value = 
+				{ IMHyperLink 
+					- _id = GUID 77ca6bb3-6245-11e9-9dc8-0050fcbce674;
+					- _dependsOn = { INObjectHandle 
+						- _m2Class = "";
+					}
+					- _linkDispName = "Edit Makefile";
+					- _linkType = "FREE";
+					- _linkTarget = "/home/control/work/Rhapsody/StopwatchProject/StopwatchTest/configuration_0/StopwatchTest.mak";
+					- isConfigurationFileHyperLink = 1;
+				}
+				{ IMHyperLink 
+					- _id = GUID 77ca6bb4-6245-11e9-9dc8-0050fcbce674;
+					- _dependsOn = { INObjectHandle 
+						- _m2Class = "";
+					}
+					- _linkDispName = "Edit Main File";
+					- _linkType = "FREE";
+					- _linkTarget = "/home/control/work/Rhapsody/StopwatchProject/StopwatchTest/configuration_0/MainStopwatchTest";
+					- isConfigurationFileHyperLink = 1;
+				}
+			}
+			- _scopeType = Explicit;
+			- _libraries = "";
+			- _additionalSources = "";
+			- _standardHeaders = "";
+			- _includePath = "";
+			- _targetMain = "";
+			- _instrumentation = None;
+			- _timeModel = RealTime;
+			- m_generateActors = 1;
+			- _statechartImplementation = Flat;
+			- _initializationCode = "";
+			- _checksList = 0 ;
+			- ScopeElements = { IRPYRawContainer 
+				- size = 0;
+			}
+			- InitialInstances = { IRPYRawContainer 
+				- size = 0;
+			}
+			- _root = { IFolder 
+				- _id = GUID 77ca6bb2-6245-11e9-9dc8-0050fcbce674;
+				- _myState = 8192;
+				- _name = "MontaVista";
+				- m_path = "";
+				- Elements = { IRPYRawContainer 
+					- size = 0;
+				}
+				- Files = { IRPYRawContainer 
+					- size = 0;
+				}
+			}
+			- weakCGTime = 4.26.2019::0:29:29;
+			- strongCGTime = 4.26.2019::0:29:29;
+			- AnimScopeElements = { IRPYRawContainer 
+				- size = 0;
+			}
+			- m_allInAnimScope = 1;
+		}
+	}
+	- HandlesInMe = { IRPYRawContainer 
+		- size = 2;
+		- value = 
+		{ IHandle 
+			- _m2Class = "ISubsystem";
+			- _filename = "Default.sbs";
+			- _subsystem = "";
+			- _class = "";
+			- _name = "Default";
+			- _id = GUID 91d80773-623a-11e9-8988-0050fcbce674;
+		}
+		{ IHandle 
+			- _m2Class = "ISubsystem";
+			- _filename = "StopwatchPkg.sbs";
+			- _subsystem = "";
+			- _class = "";
+			- _name = "StopwatchPkg";
+			- _id = GUID 91d807cf-623a-11e9-8988-0050fcbce674;
+		}
+	}
+	- VariationPoints = { IRPYRawContainer 
+		- size = 0;
+	}
+	- SelectedVariants = { IRPYRawContainer 
+		- size = 0;
+	}
+	- weakCGTime = 4.26.2019::1:58:1;
+	- strongCGTime = 4.26.2019::1:56:30;
+}
+

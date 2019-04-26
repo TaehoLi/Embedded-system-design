@@ -1,0 +1,6 @@
+[Op Calls]
+[Events]
+Button->GEN(evPress())`StopwatchPkg::Button
+Button->GEN(evRelease())`StopwatchPkg::Button
+[Active Breakpoints]
+[Inactive Breakpoints]

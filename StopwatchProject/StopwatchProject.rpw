@@ -1,0 +1,146 @@
+I-Logix-RPY-Archive version 8.5.2 * 2030848
+{ CGEMdiWorkspace 
+	- stubList = { IRPYRawContainer 
+		- size = 0;
+	}
+	- myViewsWithID = { IRPYRawContainer 
+		- size = 4;
+		- value = 
+		{ CGEMdiDiagramParams 
+			- _placement = { CCommon_WINDOWPLACEMENT 
+				- m_nLength = 44;
+				- m_nFlags = 2;
+				- m_showCmd = 3;
+				- m_ptMinPositionX = -1;
+				- m_ptMinPositionY = -1;
+				- m_ptMaxPositionX = -4;
+				- m_ptMaxPositionY = -23;
+				- m_nLeft = 80;
+				- m_nTop = 88;
+				- m_nRight = 686;
+				- m_nBottom = 416;
+			}
+			- _wasOpenedOnCloseProject = 1;
+			- _theDiagram = { IHandle 
+				- _m2Class = "IStateChartDiagram";
+				- _filename = "StopwatchPkg.sbs";
+				- _subsystem = "StopwatchPkg";
+				- _class = "TopLevel.Button";
+				- _name = "StatechartDiagram";
+				- _id = GUID 91d80a3d-623a-11e9-8988-0050fcbce674;
+			}
+			- _UpLeft = 0 0 ;
+			- _DownRight = 726 462 ;
+			- _instanceName = "";
+			- m_nDiagramIndex = 2;
+		}
+		{ CGEMdiDiagramParams 
+			- _placement = { CCommon_WINDOWPLACEMENT 
+				- m_nLength = 44;
+				- m_nFlags = 0;
+				- m_showCmd = 1;
+				- m_ptMinPositionX = -1;
+				- m_ptMinPositionY = -1;
+				- m_ptMaxPositionX = -4;
+				- m_ptMaxPositionY = -23;
+				- m_nLeft = 0;
+				- m_nTop = 0;
+				- m_nRight = 606;
+				- m_nBottom = 328;
+			}
+			- _wasOpenedOnCloseProject = 1;
+			- _theDiagram = { IHandle 
+				- _m2Class = "IStateChartDiagram";
+				- _filename = "StopwatchPkg.sbs";
+				- _subsystem = "StopwatchPkg";
+				- _class = "TopLevel.PushSwitch";
+				- _name = "StatechartDiagram";
+				- _id = GUID 651b28f2-67c4-11e9-a6d4-0050fcbce674;
+			}
+			- _UpLeft = 0 0 ;
+			- _DownRight = 578 281 ;
+			- _instanceName = "";
+			- m_nDiagramIndex = 0;
+		}
+		{ CGEMdiDiagramParams 
+			- _placement = { CCommon_WINDOWPLACEMENT 
+				- m_nLength = 44;
+				- m_nFlags = 0;
+				- m_showCmd = 1;
+				- m_ptMinPositionX = -1;
+				- m_ptMinPositionY = -1;
+				- m_ptMaxPositionX = -4;
+				- m_ptMaxPositionY = -23;
+				- m_nLeft = 60;
+				- m_nTop = 66;
+				- m_nRight = 666;
+				- m_nBottom = 394;
+			}
+			- _wasOpenedOnCloseProject = 1;
+			- _theDiagram = { IHandle 
+				- _m2Class = "IDiagram";
+				- _filename = "StopwatchPkg.sbs";
+				- _subsystem = "StopwatchPkg";
+				- _class = "";
+				- _name = "StopwatchOMD";
+				- _id = GUID 91d8093b-623a-11e9-8988-0050fcbce674;
+			}
+			- _UpLeft = 33 51 ;
+			- _DownRight = 611 332 ;
+			- _instanceName = "";
+			- m_nDiagramIndex = 3;
+		}
+		{ CGEMdiDiagramParams 
+			- _placement = { CCommon_WINDOWPLACEMENT 
+				- m_nLength = 44;
+				- m_nFlags = 0;
+				- m_showCmd = 1;
+				- m_ptMinPositionX = -1;
+				- m_ptMinPositionY = -1;
+				- m_ptMaxPositionX = -4;
+				- m_ptMaxPositionY = -23;
+				- m_nLeft = 100;
+				- m_nTop = 110;
+				- m_nRight = 706;
+				- m_nBottom = 438;
+			}
+			- _wasOpenedOnCloseProject = 1;
+			- _theDiagram = { IHandle 
+				- _m2Class = "IStateChartDiagram";
+				- _filename = "StopwatchPkg.sbs";
+				- _subsystem = "StopwatchPkg";
+				- _class = "TopLevel.Timer";
+				- _name = "StatechartDiagram";
+				- _id = GUID 91d80ad2-623a-11e9-8988-0050fcbce674;
+			}
+			- _UpLeft = 0 0 ;
+			- _DownRight = 578 281 ;
+			- _instanceName = "";
+			- m_nDiagramIndex = 1;
+		}
+	}
+	- _fullName = "/home/control/work/Rhapsody/StopwatchProject/StopwatchProject";
+	- m_SearchScopeList = { IRPYRawContainer 
+		- size = 0;
+	}
+	- bUsingCustomBrowserView = 0;
+	- bUsingQueries = 0;
+	- bApplyOnDiagrams = 0;
+	- liRhId = { IRPYRawContainer 
+		- size = 0;
+	}
+	- liElementTypes = { IRPYRawContainer 
+		- size = 0;
+	}
+
+	- m_favoritesTree = {
+		count=1;
+		{ - favoritesItem
+			generation = 0;
+			name = Favorites;
+			idOrFolder = folder;
+		}
+	}
+
+}
+
