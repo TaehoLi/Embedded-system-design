@@ -1,0 +1,311 @@
+I-Logix-RPY-Archive version 8.5.2 C++ 2030848
+{ IComponent 
+	- _id = GUID 5c802d2e-e647-11e7-8ff4-0050fcbce674;
+	- _myState = 139264;
+	- _name = "CanButtonTest";
+	- m_buildType = Executable;
+	- m_libraries = "";
+	- m_additionalSources = "";
+	- m_standardHeaders = "";
+	- m_includePath = "";
+	- m_initializationCode = "";
+	- m_folder = { IFolder 
+		- _id = GUID 5c802d2f-e647-11e7-8ff4-0050fcbce674;
+		- _myState = 73728;
+		- _name = "Files";
+		- _lastID = 1;
+		- m_path = "";
+		- Elements = { IRPYRawContainer 
+			- size = 0;
+		}
+		- Files = { IRPYRawContainer 
+			- size = 1;
+			- value = 
+			{ IFile 
+				- _id = GUID 5c803159-e647-11e7-8ff4-0050fcbce674;
+				- _myState = 8192;
+				- _name = "can_interface";
+				- m_path = "";
+				- m_type = implFile;
+				- Fragments = { IRPYRawContainer 
+					- size = 1;
+					- value = 
+					{ IFileFragment 
+						- _id = GUID e24779c9-e64b-11e7-8ddc-0050fcbce674;
+						- _name = "Text";
+						- m_type = textFragment;
+						- m_text = "/* A simple SocketCAN example */
+#include <stdio.h>
+#include <string.h>
+#include <fcntl.h>
+#include <sys/ioctl.h>
+#include <net/if.h>
+#include <linux/can.h>
+#include <linux/can/raw.h>
+#include <signal.h>  
+//#include <sys/types.h>
+#include <unistd.h>
+
+int soc;
+int read_can_port;
+int dev_pid=0;
+struct can_frame frame_rx;    
+struct can_frame frame_tx; 
+extern void CanReceiveIsr(void); 
+extern unsigned char download_data_buf[8];
+
+
+void usrsignal(int sig)
+{   
+	read(soc, &frame_rx, sizeof(struct can_frame)); 
+	for(int i=0;i<8;i++) download_data_buf[i]=frame_rx.data[i];
+	
+	CanReceiveIsr();
+}
+int open_port(const char *port)
+{
+    struct ifreq ifr;
+    struct sockaddr_can addr;
+    /* open socket */
+    soc = socket(PF_CAN, SOCK_RAW, CAN_RAW);
+    if(soc < 0)
+    {
+        return (-1);
+    }
+    addr.can_family = AF_CAN;
+    strcpy(ifr.ifr_name, port);
+    if (ioctl(soc, SIOCGIFINDEX, &ifr) < 0)
+    {
+        return (-1);
+    }
+    addr.can_ifindex = ifr.ifr_ifindex;
+    fcntl(soc, F_SETFL, O_NONBLOCK);
+    if (bind(soc, (struct sockaddr *)&addr, sizeof(addr)) < 0)
+    {
+        return (-1);
+    }
+    return 0;
+}  
+int send_can_frame(int id, unsigned char *data)
+{
+    int retval;   
+    frame_tx.can_id=id; 
+    for(int i=0;i<8;i++) frame_tx.data[i]=data[i];
+	frame_tx.can_dlc=8;
+	retval = write(soc, &frame_tx, sizeof(struct can_frame));
+    if (retval != sizeof(struct can_frame))
+    {
+        return (-1);
+    }
+    else
+    {
+        return (0);
+    }
+}
+int send_port(struct can_frame *frame)
+{
+    int retval;
+   retval = write(soc, frame, sizeof(struct can_frame));
+    if (retval != sizeof(struct can_frame))
+    {
+        return (-1);
+    }
+    else
+    {
+        return (0);
+    }
+}
+/* this is just an example, run in a thread */
+void read_port()
+{
+    struct can_frame frame_rd;
+    int recvbytes = 0;
+    read_can_port = 1;
+    while(read_can_port)
+    {
+        struct timeval timeout = {1, 0};
+        fd_set readSet;
+        FD_ZERO(&readSet);
+        FD_SET(soc, &readSet);
+        if (select((soc + 1), &readSet, NULL, NULL, &timeout) >= 0)
+        {
+            if (!read_can_port)
+            {
+                break;
+            }
+            if (FD_ISSET(soc, &readSet))
+            {
+                recvbytes = read(soc, &frame_rd, sizeof(struct can_frame));
+                if(recvbytes)
+                {
+                    printf(\"dlc = %d, id = %d, data[0] = %d\\n\", frame_rd.can_dlc, frame_rd.can_id, frame_rd.data[0]);
+                }
+            }
+        }
+    }
+}
+int close_port()
+{
+    close(soc);
+    return 0;
+}
+int can_init(void)
+{
+
+
+	(void)signal(SIGUSR1, usrsignal);
+	dev_pid=getpid();
+	printf(\"dev_pid=%d\\n\", dev_pid);
+
+    open_port(\"can0\");
+	frame_tx.can_id=1;
+	frame_tx.data[0]=0x12;
+	frame_tx.data[1]=0x34;
+	frame_tx.can_dlc=8;
+	frame_tx.pid = dev_pid;
+	send_port(&frame_tx);
+//while(1);
+    //read_port();
+    return 0;
+}";
+						- m_startRow = 0;
+						- m_startCol_Short = 0;
+						- m_endRow = 0;
+						- m_endCol_Short = 0;
+						- m_subject = { INObjectHandle 
+							- _m2Class = "";
+						}
+					}
+				}
+			}
+		}
+	}
+	- m_configActive = { ICodeGenConfigInfoHandle 
+		- _m2Class = "ICodeGenConfigInfo";
+		- _id = GUID 5c802d30-e647-11e7-8ff4-0050fcbce674;
+	}
+	- Configs = { IRPYRawContainer 
+		- size = 1;
+		- value = 
+		{ ICodeGenConfigInfo 
+			- _id = GUID 5c802d30-e647-11e7-8ff4-0050fcbce674;
+			- _myState = 8192;
+			- _properties = { IPropertyContainer 
+				- Subjects = { IRPYRawContainer 
+					- size = 1;
+					- value = 
+					{ IPropertySubject 
+						- _Name = "CPP_CG";
+						- Metaclasses = { IRPYRawContainer 
+							- size = 1;
+							- value = 
+							{ IPropertyMetaclass 
+								- _Name = "Configuration";
+								- Properties = { IRPYRawContainer 
+									- size = 1;
+									- value = 
+									{ IProperty 
+										- _Name = "Environment";
+										- _Value = "MontaVista";
+										- _Type = Enum;
+										- _ExtraTypeInfo = "Linux,MontaVista,Multi4Linux,INTEGRITY5,Integrity5ESTL";
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			- _name = "MontaVista";
+			- HyperLinks = { IRPYRawContainer 
+				- size = 2;
+				- value = 
+				{ IMHyperLink 
+					- _id = GUID 5c802fa8-e647-11e7-8ff4-0050fcbce674;
+					- _dependsOn = { INObjectHandle 
+						- _m2Class = "";
+					}
+					- _linkDispName = "Edit Makefile";
+					- _linkType = "FREE";
+					- _linkTarget = "/home/control/work/Rhapsody/CanButton/DefaultComponent/DefaultConfig/DefaultComponent.mak";
+					- isConfigurationFileHyperLink = 1;
+				}
+				{ IMHyperLink 
+					- _id = GUID 5c802fa9-e647-11e7-8ff4-0050fcbce674;
+					- _dependsOn = { INObjectHandle 
+						- _m2Class = "";
+					}
+					- _linkDispName = "Edit Main File";
+					- _linkType = "FREE";
+					- _linkTarget = "/home/control/work/Rhapsody/CanButton/DefaultComponent/DefaultConfig/MainDefaultComponent";
+					- isConfigurationFileHyperLink = 1;
+				}
+			}
+			- _scopeType = Explicit;
+			- _libraries = "";
+			- _additionalSources = "";
+			- _standardHeaders = "";
+			- _includePath = "";
+			- _targetMain = "";
+			- _instrumentation = None;
+			- _timeModel = RealTime;
+			- m_generateActors = 1;
+			- _statechartImplementation = Flat;
+			- _initializationCode = "";
+			- _checksList = 0 ;
+			- ScopeElements = { IRPYRawContainer 
+				- size = 0;
+			}
+			- InitialInstances = { IRPYRawContainer 
+				- size = 0;
+			}
+			- _root = { IFolder 
+				- _id = GUID 5c802d31-e647-11e7-8ff4-0050fcbce674;
+				- _myState = 8192;
+				- _name = "MontaVista";
+				- m_path = "";
+				- Elements = { IRPYRawContainer 
+					- size = 0;
+				}
+				- Files = { IRPYRawContainer 
+					- size = 0;
+				}
+			}
+			- weakCGTime = 5.10.2019::3:36:1;
+			- strongCGTime = 5.10.2019::3:36:1;
+			- AnimScopeElements = { IRPYRawContainer 
+				- size = 0;
+			}
+			- m_allInAnimScope = 1;
+		}
+	}
+	- HandlesInMe = { IRPYRawContainer 
+		- size = 2;
+		- value = 
+		{ IHandle 
+			- _m2Class = "ISubsystem";
+			- _filename = "Default.sbs";
+			- _subsystem = "";
+			- _class = "";
+			- _name = "Default";
+			- _id = GUID 5c802d24-e647-11e7-8ff4-0050fcbce674;
+		}
+		{ IHandle 
+			- _m2Class = "ISubsystem";
+			- _filename = "CanButton.sbs";
+			- _subsystem = "";
+			- _class = "";
+			- _name = "CanButton";
+			- _id = GUID 5c802d80-e647-11e7-8ff4-0050fcbce674;
+		}
+	}
+	- VariationPoints = { IRPYRawContainer 
+		- size = 0;
+	}
+	- SelectedVariants = { IRPYRawContainer 
+		- size = 0;
+	}
+	- weakCGTime = 5.15.2019::2:43:3;
+	- strongCGTime = 12.21.2017::12:38:36;
+}
+

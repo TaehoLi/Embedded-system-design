@@ -1,0 +1,118 @@
+I-Logix-RPY-Archive version 8.5.2 * 2030848
+{ CGEMdiWorkspace 
+	- stubList = { IRPYRawContainer 
+		- size = 0;
+	}
+	- myViewsWithID = { IRPYRawContainer 
+		- size = 3;
+		- value = 
+		{ CGEMdiDiagramParams 
+			- _placement = { CCommon_WINDOWPLACEMENT 
+				- m_nLength = 44;
+				- m_nFlags = 0;
+				- m_showCmd = 1;
+				- m_ptMinPositionX = -1;
+				- m_ptMinPositionY = -1;
+				- m_ptMaxPositionX = -4;
+				- m_ptMaxPositionY = -23;
+				- m_nLeft = 40;
+				- m_nTop = 44;
+				- m_nRight = 547;
+				- m_nBottom = 325;
+			}
+			- _wasOpenedOnCloseProject = 1;
+			- _theDiagram = { IHandle 
+				- _m2Class = "IDiagram";
+				- _filename = "CanButton.sbs";
+				- _subsystem = "CanButton";
+				- _class = "";
+				- _name = "CanButtonOMD";
+				- _id = GUID 5c802eec-e647-11e7-8ff4-0050fcbce674;
+			}
+			- _UpLeft = 107 0 ;
+			- _DownRight = 496 190 ;
+			- _instanceName = "";
+			- m_nDiagramIndex = 2;
+		}
+		{ CGEMdiDiagramParams 
+			- _placement = { CCommon_WINDOWPLACEMENT 
+				- m_nLength = 44;
+				- m_nFlags = 2;
+				- m_showCmd = 3;
+				- m_ptMinPositionX = -1;
+				- m_ptMinPositionY = -1;
+				- m_ptMaxPositionX = -4;
+				- m_ptMaxPositionY = -23;
+				- m_nLeft = 80;
+				- m_nTop = 88;
+				- m_nRight = 738;
+				- m_nBottom = 467;
+			}
+			- _wasOpenedOnCloseProject = 1;
+			- _theDiagram = { IHandle 
+				- _m2Class = "IStateChartDiagram";
+				- _filename = "CanButton.sbs";
+				- _subsystem = "CanButton";
+				- _class = "TopLevel.ElevatorControl";
+				- _name = "StatechartDiagram";
+				- _id = GUID b2facd2d-6d42-11e9-898a-0050fcbce674;
+			}
+			- _UpLeft = 54 0 ;
+			- _DownRight = 950 587 ;
+			- _instanceName = "";
+			- m_nDiagramIndex = 0;
+		}
+		{ CGEMdiDiagramParams 
+			- _placement = { CCommon_WINDOWPLACEMENT 
+				- m_nLength = 44;
+				- m_nFlags = 0;
+				- m_showCmd = 1;
+				- m_ptMinPositionX = -1;
+				- m_ptMinPositionY = -1;
+				- m_ptMaxPositionX = -4;
+				- m_ptMaxPositionY = -23;
+				- m_nLeft = 60;
+				- m_nTop = 66;
+				- m_nRight = 725;
+				- m_nBottom = 347;
+			}
+			- _wasOpenedOnCloseProject = 1;
+			- _theDiagram = { IHandle 
+				- _m2Class = "IStateChartDiagram";
+				- _filename = "CanButton.sbs";
+				- _subsystem = "CanButton";
+				- _class = "TopLevel.ReceiveMessageObj";
+				- _name = "StatechartDiagram";
+				- _id = GUID 5c802f43-e647-11e7-8ff4-0050fcbce674;
+			}
+			- _UpLeft = 0 0 ;
+			- _DownRight = 455 167 ;
+			- _instanceName = "";
+			- m_nDiagramIndex = 1;
+		}
+	}
+	- _fullName = "/home/control/work/Rhapsody/assignment_limdj/CanElevator/CanButton";
+	- m_SearchScopeList = { IRPYRawContainer 
+		- size = 0;
+	}
+	- bUsingCustomBrowserView = 0;
+	- bUsingQueries = 0;
+	- bApplyOnDiagrams = 0;
+	- liRhId = { IRPYRawContainer 
+		- size = 0;
+	}
+	- liElementTypes = { IRPYRawContainer 
+		- size = 0;
+	}
+
+	- m_favoritesTree = {
+		count=1;
+		{ - favoritesItem
+			generation = 0;
+			name = Favorites;
+			idOrFolder = folder;
+		}
+	}
+
+}
+
